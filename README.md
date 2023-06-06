@@ -1,4 +1,4 @@
-# MS.PP (music sentiment progromattic playlist)
+# MS.PP (music sentiment programmatic playlist)
 
 1. Get new music releases from Spotify
 2. Query Reddit for fresh music posts about the new music releases.
