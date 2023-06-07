@@ -1,7 +1,7 @@
 import { Song } from './music.interface';
 import { Comment } from './reddit.interface';
 
-export interface SongComments {
-  song: Song[];
+export interface SongData {
+  song: Song;
   comments: Comment[];
 }

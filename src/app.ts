@@ -45,6 +45,8 @@ async function main() {
     }
     // get comments from each post
     const comments = await redditController.getPostComments(release, posts);
+    // link comments to songs
+    const songData = await redditController.linkComments(release, comments);
     // rate each song according to the related comments
   }
   // await spotifyController.getLikedArtists(token);

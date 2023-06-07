@@ -82,7 +82,12 @@ test('get album posts', async () => {
   const posts: Posting[] = await redditController.getAlbumPosts(kaytraRelease);
 });
 
-test.only('get post comments', async () => {
+test('get post comments', async () => {
   const comments = await redditController.getPostComments(kaytraRelease, [kaytraPost]);
   console.log('comments', comments);
+});
+test.only('link comments', async () => {
+  const comments = await redditController.getPostComments(kaytraRelease, [kaytraPost]);
+  const songData = await redditController.linkComments(kaytraRelease, comments);
+  console.dir(songData, { depth: null });
 });

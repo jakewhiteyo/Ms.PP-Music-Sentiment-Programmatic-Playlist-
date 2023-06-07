@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { Release, album_type } from '../interfaces/music.interface';
 import { Posting } from '../interfaces/reddit.interface';
+import { SongData } from '../interfaces/internal.interface';
+import { Comment } from '../interfaces/reddit.interface';
 
 const redditInstance = axios.create({
   baseURL: 'https://reddit.com/',
@@ -115,6 +117,29 @@ class RedditController {
     } catch (e) {
       console.log('e', e);
     }
+  };
+
+  public linkComments = async function (
+    release: Release,
+    comments: Comment[],
+  ): Promise<SongData[]> {
+    // create empty songs object
+    const songComments: SongData[] = release.songs.map((song) => {
+      return {
+        song: song,
+        comments: [],
+      };
+    });
+    comments.forEach((comment) => {
+      for (let i = 0; i < songComments.length; i += 1) {
+        const songComment = songComments[i];
+        if (comment.text.toLowerCase().includes(songComment.song.name.toLowerCase())) {
+          songComment.comments.push(comment);
+          songComments[i] = songComment;
+        }
+      }
+    });
+    return songComments;
   };
 
   // driver method for processing a release
